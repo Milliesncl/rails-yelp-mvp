@@ -1,0 +1,7 @@
+<h1>Edit <%= @restaurant.name %></h1>
+
+<%= simple_form_for [ @restaurant, @review ] do |f|%>
+<%= f.input :content %>
+<%= f.collection_radio_buttons :rating, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline %>
+<%= f.submit %>
+<% end %>

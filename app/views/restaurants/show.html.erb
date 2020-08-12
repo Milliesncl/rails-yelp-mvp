@@ -3,19 +3,13 @@
 <p><%= @restaurant.category %></p>
 <p><%= @restaurant.phone_number %></p>
 
-<%= link_to "Return to the list", restaurants_path, class: "btn btn-primary" %>
-
 <ul>
   <% @restaurant.reviews.each do |review| %>
-  <li><%= review.content %></li>
+  <li><%= review.content %> - <%= review.rating %>/5</li>
   <% end %>
 </ul>
 
-<h1>Add a review ✏️</h1>
+<%= link_to "Return to the list", restaurants_path, class: "btn btn-primary" %>
+<%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
 
-<%= simple_form_for [ @reviews @restaurant  ] do |f|%>
-<%= f.input :content %>
-<%= f.collection_radio_buttons :content, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline %>
-<%= f.submit %>
-<% end %>
 
