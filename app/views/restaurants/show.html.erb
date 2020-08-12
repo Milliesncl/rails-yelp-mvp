@@ -1,0 +1,21 @@
+<h1><%= @restaurant.name %></h1>
+<h2><%= @restaurant.address %></h2>
+<p><%= @restaurant.category %></p>
+<p><%= @restaurant.phone_number %></p>
+
+<%= link_to "Return to the list", restaurants_path, class: "btn btn-primary" %>
+
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+  <li><%= review.content %></li>
+  <% end %>
+</ul>
+
+<h1>Add a review ✏️</h1>
+
+<%= simple_form_for [ @reviews @restaurant  ] do |f|%>
+<%= f.input :content %>
+<%= f.collection_radio_buttons :content, [[1], [2], [3], [4], [5]], :first, :last, item_wrapper_tag: false, boolean_style: :inline %>
+<%= f.submit %>
+<% end %>
+
